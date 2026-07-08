@@ -696,7 +696,7 @@ footer {
           <small>NPV贴现率</small>
         </div>
         <div class="metric">
-          <span>第6年</span>
+          <span>第5年</span>
           <small>贴现后BEP</small>
         </div>
       </div>
@@ -865,8 +865,8 @@ footer {
               <input id="revenueInput" type="range" min="75" max="130" step="1" value="100" />
             </label>
             <label class="slider-row">
-              <span>食材成本率：<b id="foodLabel">38</b>%</span>
-              <input id="foodInput" type="range" min="30" max="48" step="1" value="38" />
+              <span>食材成本率：<b id="foodLabel">37.5</b>%</span>
+              <input id="foodInput" type="range" min="30" max="48" step="0.5" value="37.5" />
             </label>
             <label class="slider-row">
               <span>贴现率：<b id="discountLabel">5.0</b>%</span>
@@ -879,11 +879,11 @@ footer {
             <h3>投资可行性结论</h3>
             <div class="finance-kpis">
               <div class="metric-card blue"><span id="yearRevenue">380.6</span><small>第1年收入</small></div>
-              <div class="metric-card green"><span id="npvValue">26.7</span><small>NPV</small></div>
-              <div class="metric-card gold"><span id="bepValue">第6年</span><small>贴现后BEP</small></div>
-              <div class="metric-card neutral"><span id="staticBepValue">约4.60年</span><small>静态回本</small></div>
+              <div class="metric-card green"><span id="npvValue">76.0</span><small>NPV</small></div>
+              <div class="metric-card gold"><span id="bepValue">第5年</span><small>贴现后BEP</small></div>
+              <div class="metric-card neutral"><span id="staticBepValue">约3.89年</span><small>静态回本</small></div>
             </div>
-            <p class="callout" id="financeAdvice">NPV为正，按5%贴现后第6年实现盈亏平衡。</p>
+            <p class="callout" id="financeAdvice">NPV为正，按5%贴现后第5年实现盈亏平衡。</p>
           </article>
         </div>
 
@@ -1138,11 +1138,11 @@ function calculateFinance() {
   for (let i = 0; i < 6; i += 1) {
     if (i > 0) revenue *= 1 + growth[i];
     const food = foodRate * revenue;
-    const labor = 78 * Math.pow(1.05, i);
-    const rent = 42 * Math.pow(1.03, i);
-    const utility = 18 * Math.pow(1.04, i);
-    const marketing = 0.075 * revenue;
-    const admin = 18 * Math.pow(1.04, i);
+    const labor = 75 * Math.pow(1.05, i);
+    const rent = 41 * Math.pow(1.03, i);
+    const utility = 17 * Math.pow(1.04, i);
+    const marketing = 0.073 * revenue;
+    const admin = 17 * Math.pow(1.04, i);
     const tax = 0.05 * revenue;
     const cost = food + labor + rent + utility + marketing + admin + tax;
     const cashFlow = revenue - cost;
@@ -1177,7 +1177,7 @@ function updateFinance() {
   const data = calculateFinance();
   document.getElementById("investLabel").textContent = money(data.invest, 0);
   document.getElementById("revenueLabel").textContent = money(data.revenueFactor * 100, 0);
-  document.getElementById("foodLabel").textContent = money(data.foodRate * 100, 0);
+  document.getElementById("foodLabel").textContent = money(data.foodRate * 100, 1);
   document.getElementById("discountLabel").textContent = money(data.discountRate * 100, 1);
   document.getElementById("yearRevenue").textContent = money(data.rows[0].revenue);
   document.getElementById("npvValue").textContent = money(data.npv);
@@ -1312,7 +1312,7 @@ Object.values(financeInputs).forEach((input) => input.addEventListener("input", 
 document.getElementById("resetFinance").addEventListener("click", () => {
   financeInputs.invest.value = 200;
   financeInputs.revenue.value = 100;
-  financeInputs.food.value = 38;
+  financeInputs.food.value = 37.5;
   financeInputs.discount.value = 5;
   updateFinance();
 });
@@ -1329,4 +1329,3 @@ window.addEventListener("resize", () => {
 </script>
   </body>
 </html>
-
