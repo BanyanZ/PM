@@ -696,7 +696,7 @@ footer {
           <small>NPV贴现率</small>
         </div>
         <div class="metric">
-          <span>第1年</span>
+          <span>第6年</span>
           <small>贴现后BEP</small>
         </div>
       </div>
@@ -878,12 +878,12 @@ footer {
           <article class="result-panel">
             <h3>投资可行性结论</h3>
             <div class="finance-kpis">
-              <div class="metric-card blue"><span id="yearRevenue">1792.5</span><small>第1年收入</small></div>
-              <div class="metric-card green"><span id="npvValue">1483.7</span><small>NPV</small></div>
-              <div class="metric-card gold"><span id="bepValue">第1年</span><small>贴现后BEP</small></div>
-              <div class="metric-card neutral"><span id="staticBepValue">约0.76年</span><small>静态回本</small></div>
+              <div class="metric-card blue"><span id="yearRevenue">380.6</span><small>第1年收入</small></div>
+              <div class="metric-card green"><span id="npvValue">26.7</span><small>NPV</small></div>
+              <div class="metric-card gold"><span id="bepValue">第6年</span><small>贴现后BEP</small></div>
+              <div class="metric-card neutral"><span id="staticBepValue">约4.60年</span><small>静态回本</small></div>
             </div>
-            <p class="callout" id="financeAdvice">NPV为正，按5%贴现后第1年实现盈亏平衡。</p>
+            <p class="callout" id="financeAdvice">NPV为正，按5%贴现后第6年实现盈亏平衡。</p>
           </article>
         </div>
 
@@ -1108,10 +1108,10 @@ document.querySelectorAll(".step").forEach((button) => {
 });
 
 const sources = [
-  { name: "堂食", formula: "160座 x 2.4翻台 x 82元 x 350天", value: 1102.1 },
-  { name: "外卖", formula: "180单/天 x 55元 x 350天", value: 346.5 },
-  { name: "饮品/小食加购", formula: "堂食客流 x 35%加购率 x 18元", value: 84.7 },
-  { name: "团购/校园活动", formula: "12场/月 x 1.8万元 x 12月", value: 259.2 },
+  { name: "堂食", formula: "60座 x 1.8翻台 x 68元 x 330天", value: 242.4 },
+  { name: "外卖", formula: "60单/天 x 45元 x 330天", value: 89.1 },
+  { name: "饮品/小食加购", formula: "堂食客流 x 25%加购率 x 12元", value: 10.7 },
+  { name: "团购/校园活动", formula: "4场/月 x 0.8万元 x 12月", value: 38.4 },
 ];
 
 const growth = [0, 0.08, 0.06, 0.05, 0.04, 0.03];
@@ -1127,7 +1127,7 @@ function calculateFinance() {
   const revenueFactor = Number(financeInputs.revenue.value) / 100;
   const foodRate = Number(financeInputs.food.value) / 100;
   const discountRate = Number(financeInputs.discount.value) / 100;
-  let revenue = 1792.5 * revenueFactor;
+  let revenue = 380.6 * revenueFactor;
   let npv = -invest;
   let staticCum = -invest;
   let discCum = -invest;
@@ -1138,11 +1138,11 @@ function calculateFinance() {
   for (let i = 0; i < 6; i += 1) {
     if (i > 0) revenue *= 1 + growth[i];
     const food = foodRate * revenue;
-    const labor = 310 * Math.pow(1.05, i);
-    const rent = 168 * Math.pow(1.03, i);
-    const utility = 72 * Math.pow(1.04, i);
+    const labor = 78 * Math.pow(1.05, i);
+    const rent = 42 * Math.pow(1.03, i);
+    const utility = 18 * Math.pow(1.04, i);
     const marketing = 0.075 * revenue;
-    const admin = 75 * Math.pow(1.04, i);
+    const admin = 18 * Math.pow(1.04, i);
     const tax = 0.05 * revenue;
     const cost = food + labor + rent + utility + marketing + admin + tax;
     const cashFlow = revenue - cost;
