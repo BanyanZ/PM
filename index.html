@@ -696,7 +696,7 @@ footer {
           <small>NPV贴现率</small>
         </div>
         <div class="metric">
-          <span>第4年</span>
+          <span>第1年</span>
           <small>贴现后BEP</small>
         </div>
       </div>
@@ -746,8 +746,8 @@ footer {
           <article class="control-panel">
             <h3>计算参数</h3>
             <label class="slider-row">
-              <span>BAC 完工预算：<b id="bacLabel">1000</b> 万元</span>
-              <input id="bacInput" type="range" min="600" max="1600" step="50" value="1000" />
+              <span>BAC 完工预算：<b id="bacLabel">200</b> 万元</span>
+              <input id="bacInput" type="range" min="50" max="400" step="10" value="200" />
             </label>
             <label class="slider-row">
               <span>计划完成比例：<b id="planLabel">33.3</b>%</span>
@@ -767,13 +767,13 @@ footer {
           <article class="result-panel">
             <h3>EVM 指标仪表盘</h3>
             <div class="evm-grid">
-              <div class="metric-card blue"><span id="pvValue">333.0</span><small>PV 计划值</small></div>
-              <div class="metric-card green"><span id="evValue">399.6</span><small>EV 挣值</small></div>
-              <div class="metric-card red"><span id="acValue">479.5</span><small>AC 实际成本</small></div>
+              <div class="metric-card blue"><span id="pvValue">66.6</span><small>PV 计划值</small></div>
+              <div class="metric-card green"><span id="evValue">79.9</span><small>EV 挣值</small></div>
+              <div class="metric-card red"><span id="acValue">95.9</span><small>AC 实际成本</small></div>
               <div class="metric-card gold"><span id="cpiValue">0.833</span><small>CPI 成本绩效</small></div>
               <div class="metric-card blue"><span id="spiValue">1.200</span><small>SPI 进度绩效</small></div>
-              <div class="metric-card red"><span id="cvValue">-79.9</span><small>CV 成本偏差</small></div>
-              <div class="metric-card green"><span id="svValue">66.6</span><small>SV 进度偏差</small></div>
+              <div class="metric-card red"><span id="cvValue">-16.0</span><small>CV 成本偏差</small></div>
+              <div class="metric-card green"><span id="svValue">13.3</span><small>SV 进度偏差</small></div>
               <div class="metric-card neutral"><span id="evmVerdict">进度提前，成本超支</span><small>管理判断</small></div>
             </div>
           </article>
@@ -857,8 +857,8 @@ footer {
           <article class="control-panel">
             <h3>财务假设</h3>
             <label class="slider-row">
-              <span>初始投资：<b id="investLabel">1000</b> 万元</span>
-              <input id="investInput" type="range" min="700" max="1400" step="50" value="1000" />
+              <span>初始投资：<b id="investLabel">200</b> 万元</span>
+              <input id="investInput" type="range" min="50" max="500" step="10" value="200" />
             </label>
             <label class="slider-row">
               <span>收入倍率：<b id="revenueLabel">100</b>%</span>
@@ -879,11 +879,11 @@ footer {
             <h3>投资可行性结论</h3>
             <div class="finance-kpis">
               <div class="metric-card blue"><span id="yearRevenue">1792.5</span><small>第1年收入</small></div>
-              <div class="metric-card green"><span id="npvValue">683.5</span><small>NPV</small></div>
-              <div class="metric-card gold"><span id="bepValue">第4年</span><small>贴现后BEP</small></div>
-              <div class="metric-card neutral"><span id="staticBepValue">约3.21年</span><small>静态回本</small></div>
+              <div class="metric-card green"><span id="npvValue">1483.7</span><small>NPV</small></div>
+              <div class="metric-card gold"><span id="bepValue">第1年</span><small>贴现后BEP</small></div>
+              <div class="metric-card neutral"><span id="staticBepValue">约0.76年</span><small>静态回本</small></div>
             </div>
-            <p class="callout" id="financeAdvice">NPV为正，按5%贴现后第4年实现盈亏平衡。</p>
+            <p class="callout" id="financeAdvice">NPV为正，按5%贴现后第1年实现盈亏平衡。</p>
           </article>
         </div>
 
@@ -927,7 +927,7 @@ footer {
     </main>
 
     <footer>
-      <span>汇报口径：沿用前序作业项目范围、112天计划与 BAC=1000万元完工预算。</span>
+      <span>汇报口径：沿用前序作业项目范围、112天计划与 BAC=200万元完工预算。</span>
     </footer>
 
     <script>
@@ -1013,7 +1013,7 @@ function renderEvmBars(items) {
 
 Object.values(evmInputs).forEach((input) => input.addEventListener("input", updateEvm));
 document.getElementById("resetEvm").addEventListener("click", () => {
-  evmInputs.bac.value = 1000;
+  evmInputs.bac.value = 200;
   evmInputs.plan.value = 33.3;
   evmInputs.speed.value = 120;
   evmInputs.cost.value = 120;
@@ -1310,7 +1310,7 @@ function drawFinance() {
 
 Object.values(financeInputs).forEach((input) => input.addEventListener("input", updateFinance));
 document.getElementById("resetFinance").addEventListener("click", () => {
-  financeInputs.invest.value = 1000;
+  financeInputs.invest.value = 200;
   financeInputs.revenue.value = 100;
   financeInputs.food.value = 38;
   financeInputs.discount.value = 5;
